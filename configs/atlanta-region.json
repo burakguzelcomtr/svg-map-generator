@@ -1,0 +1,32 @@
+{
+  "mode": "counties",
+  "state": "Georgia",
+  "title": "Atlanta Metro Counties",
+  "counties": [
+    "Cherokee",
+    "Forsyth",
+    "Cobb",
+    "Gwinnett",
+    "Douglas",
+    "Fulton",
+    "DeKalb",
+    "Clayton",
+    "Rockdale",
+    "Fayette",
+    "Henry"
+  ],
+  "highlightedCounties": [],
+  "padding": 1.2,
+  "regionMarkers": ["Fulton"],
+  "output": "atlanta-region-map.svg",
+  "style": {
+    "fill": "#e86f32",
+    "highlightFill": "#c94d31",
+    "border": "#fff3e9",
+    "borderWidth": 1.8,
+    "marker": "#17212b",
+    "markerRing": "#ffffff",
+    "markerRadius": 0.55,
+    "markerRingPadding": 0.35
+  }
+}

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Build standalone, transparent SVG maps without runtime map libraries." />
+    <title>Territory — SVG Map Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Map presets">
+        <a class="brand" href="#" aria-label="Territory home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 30 30"><path d="M4 7.5 14.8 2 26 7.5v15L15.2 28 4 22.5Z"/><path d="m4 7.5 11.2 5.6L26 7.5M15.2 13.1V28"/></svg>
+          </span>
+          <span>TERRITORY</span>
+        </a>
+
+        <nav class="preset-nav">
+          <div class="nav-section">
+            <p class="nav-eyebrow">USA</p>
+            <button class="preset-link active" data-preset="atlanta"><span>Atlanta</span><span class="link-index">01</span></button>
+            <button class="preset-link" data-preset="california"><span>California</span><span class="link-index">02</span></button>
+            <button class="preset-link" data-preset="new-york"><span>New York</span><span class="link-index">03</span></button>
+            <button class="preset-link" data-preset="texas"><span>Texas</span><span class="link-index">04</span></button>
+            <button class="preset-link" data-preset="ohio"><span>Ohio</span><span class="link-index">05</span></button>
+            <button class="preset-link" data-preset="virginia"><span>Virginia</span><span class="link-index">06</span></button>
+            <button class="preset-link" data-preset="minnesota"><span>Minnesota</span><span class="link-index">07</span></button>
+            <button class="preset-link" data-preset="michigan"><span>Michigan</span><span class="link-index">08</span></button>
+            <button class="preset-link" data-preset="missouri"><span>Missouri</span><span class="link-index">09</span></button>
+            <button class="preset-link see-all" id="see-all"><span>See all states</span><span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="nav-section global-section">
+            <p class="nav-eyebrow">GLOBAL</p>
+            <button class="preset-link" data-preset="united-kingdom"><span>United Kingdom</span><span class="link-index">10</span></button>
+            <button class="preset-link" data-preset="mexico"><span>Mexico</span><span class="link-index">11</span></button>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <span class="status-dot"></span>
+          <span>Atlas data ready</span>
+          <span class="version">v1.0</span>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="kicker">SVG MAP GENERATOR</p>
+            <h1 id="map-title">Atlanta Region</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="icon-button" id="copy-svg" title="Copy SVG" aria-label="Copy SVG">
+              <svg viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
+            </button>
+            <button class="button button-ghost" id="reset-map">Reset</button>
+            <button class="button button-primary" id="export-svg">
+              <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+              Export SVG
+            </button>
+          </div>
+        </header>
+
+        <section class="canvas-area" aria-label="Map preview">
+          <div class="canvas-toolbar">
+            <span class="canvas-meta"><span class="pulse"></span><span id="region-count">11 paths</span></span>
+            <span class="canvas-meta" id="viewbox-readout">VIEWBOX —</span>
+          </div>
+          <div class="map-stage" id="map-stage">
+            <div class="transparent-grid"></div>
+            <svg id="map-preview" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="preview-title">
+              <title id="preview-title">Map preview</title>
+              <g id="regions-layer"></g>
+              <g id="cities-layer"></g>
+            </svg>
+            <div class="placement-hint" id="placement-hint" hidden>Click anywhere to add the marker instantly · ESC to cancel</div>
+            <div class="map-caption">
+              <span id="caption-name">ATLANTA METRO</span>
+              <span id="caption-details">11 COUNTIES · 1 MARKER</span>
+            </div>
+          </div>
+          <div class="zoom-controls" aria-label="Preview zoom">
+            <button id="zoom-out" aria-label="Zoom out">−</button>
+            <span id="zoom-value">100%</span>
+            <button id="zoom-in" aria-label="Zoom in">+</button>
+          </div>
+        </section>
+      </main>
+
+      <aside class="inspector" aria-label="Map appearance">
+        <div class="inspector-header">
+          <div>
+            <p class="kicker">APPEARANCE</p>
+            <h2>Style your map</h2>
+          </div>
+          <span class="live-badge">LIVE</span>
+        </div>
+
+        <div class="control-section">
+          <div class="section-heading"><span>01</span><h3>Regions</h3></div>
+          <label class="color-control">
+            <span>Base fill</span>
+            <span class="color-field"><input type="color" id="base-fill" value="#d9dde4"/><code id="base-fill-code">#D9DDE4</code></span>
+          </label>
+          <label class="color-control">
+            <span>Highlight</span>
+            <span class="color-field"><input type="color" id="highlight-fill" value="#f26b4f"/><code id="highlight-fill-code">#F26B4F</code></span>
+          </label>
+          <div class="field-label">Highlight regions</div>
+          <div class="chip-list" id="highlight-list"></div>
+        </div>
+
+        <div class="control-section">
+          <div class="section-heading"><span>02</span><h3>Borders</h3></div>
+          <label class="color-control">
+            <span>Stroke</span>
+            <span class="color-field"><input type="color" id="border-color" value="#18212f"/><code id="border-color-code">#18212F</code></span>
+          </label>
+          <label class="range-control">
+            <span>Width <output id="border-width-value">1.6 px</output></span>
+            <input type="range" id="border-width" min="0" max="5" step="0.1" value="1.6" />
+          </label>
+        </div>
+
+        <div class="control-section">
+          <div class="section-heading"><span>03</span><h3>Labels & markers</h3></div>
+          <label class="preset-city-control region-marker-control">
+            <span>Place on a region</span>
+            <select id="region-marker-preset" aria-label="Place a marker on a region">
+              <option value="">Choose a region…</option>
+            </select>
+          </label>
+          <label class="preset-city-control">
+            <span>City marker <em>optional</em></span>
+            <select id="city-preset" aria-label="Quick add a city">
+              <option value="">Choose a city…</option>
+            </select>
+          </label>
+          <div class="city-list" id="city-list"></div>
+          <p class="marker-drag-note"><span>↔</span> Drag any marker or name directly on the preview.</p>
+          <button class="pick-map-button" id="place-marker"><span>⌖</span>Pick a point on the map</button>
+          <button class="add-city-button" id="add-city"><span>＋</span>Add custom coordinates</button>
+          <div class="city-form" id="city-form" hidden>
+            <label><span>Name</span><input id="city-name" type="text" placeholder="Custom marker" /></label>
+            <div class="coordinate-row">
+              <label><span>Latitude</span><input id="city-lat" type="text" inputmode="decimal" placeholder="33.749" /></label>
+              <label><span>Longitude</span><input id="city-lon" type="text" inputmode="decimal" placeholder="-84.388" /></label>
+            </div>
+            <div class="form-actions"><button id="cancel-city">Cancel</button><button id="save-city">Add marker</button></div>
+          </div>
+          <label class="color-control compact">
+            <span>Marker</span>
+            <span class="color-field"><input type="color" id="marker-color" value="#18212f"/><code id="marker-color-code">#18212F</code></span>
+          </label>
+          <label class="color-control">
+            <span>Marker border</span>
+            <span class="color-field"><input type="color" id="marker-border-color" value="#ffffff"/><code id="marker-border-color-code">#FFFFFF</code></span>
+          </label>
+          <label class="marker-mode-control">
+            <span>Display</span>
+            <select id="marker-mode">
+              <option value="dot">Dot</option>
+              <option value="name">Name only</option>
+              <option value="dot-name">Dot + name</option>
+            </select>
+          </label>
+          <label class="range-control">
+            <span>Marker / text size <output id="marker-size-value">5 px</output></span>
+            <input type="range" id="marker-size" min="0.25" max="12" step="0.25" value="5" />
+          </label>
+          <label class="range-control">
+            <span>Border size <output id="marker-border-width-value">2 px</output></span>
+            <input type="range" id="marker-border-width" min="0" max="6" step="0.5" value="2" />
+          </label>
+        </div>
+
+        <div class="export-note"><span>↳</span><p>Standalone SVG<br/><small>No runtime libraries or background layer.</small></p></div>
+      </aside>
+    </div>
+
+    <dialog id="state-dialog">
+      <div class="dialog-header">
+        <div><p class="kicker">CUSTOM REGION</p><h2>Select states</h2></div>
+        <button id="close-dialog" aria-label="Close">×</button>
+      </div>
+      <input class="search-input" id="state-search" type="search" placeholder="Search 51 regions…" />
+      <div class="state-grid" id="state-grid"></div>
+      <div class="dialog-footer"><span id="selected-count">0 selected</span><button class="button button-primary" id="apply-states">Build region</button></div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="src/app.js?v=7"></script>
+  </body>
+</html>

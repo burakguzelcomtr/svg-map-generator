@@ -1,0 +1,31 @@
+{
+  "mode": "subdivisions",
+  "country": "Mexico",
+  "title": "Mexico States",
+  "regions": [
+    "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua",
+    "Coahuila de Zaragoza", "Colima", "Distrito Federal", "Durango", "Guanajuato", "Guerrero", "Hidalgo",
+    "Jalisco", "Mexico", "Michoacan de Ocampo", "Morelos", "Nayarit", "Nuevo Leon", "Oaxaca", "Puebla",
+    "Queretaro de Arteaga", "Quintana Roo", "San Luis Potosi", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas",
+    "Tlaxcala", "Veracruz de Ignacio de la Llave", "Yucatan", "Zacatecas"
+  ],
+  "highlightedRegions": ["Jalisco", "Distrito Federal"],
+  "cities": [
+    { "name": "Mexico City", "latitude": 19.4326, "longitude": -99.1332 },
+    { "name": "Guadalajara", "latitude": 20.6597, "longitude": -103.3496 },
+    { "name": "Monterrey", "latitude": 25.6866, "longitude": -100.3161 }
+  ],
+  "output": "mexico-regions-map.svg",
+  "padding": 1.5,
+  "style": {
+    "fill": "#e86f32",
+    "highlightFill": "#c94d31",
+    "border": "#fff3e9",
+    "borderWidth": 0.9,
+    "marker": "#17212b",
+    "markerRing": "#ffffff",
+    "markerRadius": 0.35,
+    "markerRingPadding": 0.22
+  }
+}
+

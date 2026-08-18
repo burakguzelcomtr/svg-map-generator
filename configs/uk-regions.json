@@ -1,0 +1,25 @@
+{
+  "mode": "subdivisions",
+  "country": "United Kingdom",
+  "title": "United Kingdom Regions",
+  "regions": ["England", "Scotland", "Wales", "Northern Ireland"],
+  "highlightedRegions": ["England"],
+  "cities": [
+    { "name": "London", "latitude": 51.5074, "longitude": -0.1278 },
+    { "name": "Edinburgh", "latitude": 55.9533, "longitude": -3.1883 },
+    { "name": "Belfast", "latitude": 54.5973, "longitude": -5.9301 }
+  ],
+  "output": "uk-regions-map.svg",
+  "padding": 0.8,
+  "style": {
+    "fill": "#e86f32",
+    "highlightFill": "#c94d31",
+    "border": "#fff3e9",
+    "borderWidth": 1.1,
+    "marker": "#17212b",
+    "markerRing": "#ffffff",
+    "markerRadius": 0.25,
+    "markerRingPadding": 0.18
+  }
+}
+

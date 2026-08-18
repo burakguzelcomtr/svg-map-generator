@@ -1,0 +1,15 @@
+{
+  "name": "svg-map-generator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "build": "node scripts/build.mjs",
+    "generate:atlanta": "node scripts/generate-map.mjs --config configs/atlanta-region.json",
+    "generate:uk": "node scripts/generate-map.mjs --config configs/uk-regions.json",
+    "generate:mexico": "node scripts/generate-map.mjs --config configs/mexico-regions.json",
+    "generate:data": "node scripts/generate-map.mjs --emit-data src/map-data.js",
+    "test": "node --check src/app.js && node --check src/projections.js && node --check scripts/generate-map.mjs && node tests/verify.mjs"
+  }
+}
