@@ -8,6 +8,8 @@
 ![Runtime dependencies: 0](https://img.shields.io/badge/runtime_dependencies-0-16a34a.svg)
 ![Output: Standalone SVG](https://img.shields.io/badge/output-standalone_SVG-e86f32.svg)
 
+[**Open the live generator →**](https://burakguzelcomtr.github.io/svg-map-generator/)
+
 </div>
 
 <p align="center">
