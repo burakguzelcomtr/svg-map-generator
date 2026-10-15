@@ -337,6 +337,8 @@ function updateSelectedCount() {
 function applyStateSelection() {
   if (!draftSelection.size) return;
   state.scope = "states";
+  delete state.parentState;
+  delete state.parentCountry;
   state.selected = [...draftSelection];
   state.highlighted = state.highlighted.filter(name => draftSelection.has(name));
   state.cities = [];

@@ -71,7 +71,7 @@ h1 { font-size: 22px; line-height: 1; letter-spacing: -.025em; margin: 0; font-w
 .zoom-controls button { width: 33px; height: 100%; border: 0; background: #fff; cursor: pointer; font-size: 18px; }
 .zoom-controls span { border-inline: 1px solid var(--line); min-width: 53px; text-align: center; font: 500 9px var(--mono); color: #66717a; }
 
-.inspector { min-height: 100vh; background: var(--panel); border-left: 1px solid var(--line); }
+.inspector { height: 100vh; overflow-y: auto; background: var(--panel); border-left: 1px solid var(--line); }
 .inspector-header { height: 102px; padding: 26px 25px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; }
 .inspector-header h2, dialog h2 { margin: 0; font-size: 16px; letter-spacing: -.02em; }
 .live-badge { font: 500 8px var(--mono); letter-spacing: .12em; color: #5c8560; background: #edf7ee; border-radius: 10px; padding: 5px 8px; }
@@ -150,7 +150,7 @@ dialog::backdrop { background: rgba(15,24,33,.62); backdrop-filter: blur(3px); }
 }
 @media (max-width: 850px) {
   .app-shell { grid-template-columns: 170px 1fr; }
-  .inspector { grid-column: 2; min-height: auto; display: grid; grid-template-columns: repeat(2,1fr); border-left: 1px solid var(--line); }
+  .inspector { grid-column: 2; height: auto; overflow-y: visible; display: grid; grid-template-columns: repeat(2,1fr); border-left: 1px solid var(--line); }
   .inspector-header { grid-column: 1 / -1; }
   .control-section { border-right: 1px solid var(--line); }
   .sidebar { grid-row: 1 / span 2; }
