@@ -32,13 +32,14 @@ const CITY_CATALOG = {
   minnesota: [city("Minneapolis", 44.9778, -93.265), city("Saint Paul", 44.9537, -93.09), city("Duluth", 46.7867, -92.1005), city("Rochester", 44.0121, -92.4802)],
   michigan: [city("Detroit", 42.3314, -83.0458), city("Grand Rapids", 42.9634, -85.6681), city("Lansing", 42.7325, -84.5555), city("Ann Arbor", 42.2808, -83.743)],
   missouri: [city("Kansas City", 39.0997, -94.5786), city("St. Louis", 38.627, -90.1994), city("Springfield", 37.209, -93.2923), city("Columbia", 38.9517, -92.3341)],
+  wisconsin: [city("Milwaukee", 43.0389, -87.9065), city("Madison", 43.0731, -89.4012), city("Green Bay", 44.5133, -88.0133), city("Kenosha", 42.5847, -87.8212), city("Eau Claire", 44.8113, -91.4985), city("La Crosse", 43.8138, -91.2519)],
   "united-kingdom": [city("London", 51.5074, -0.1278), city("Manchester", 53.4808, -2.2426), city("Birmingham", 52.4862, -1.8904), city("Edinburgh", 55.9533, -3.1883), city("Glasgow", 55.8642, -4.2518), city("Liverpool", 53.4084, -2.9916), city("Cardiff", 51.4816, -3.1791), city("Belfast", 54.5973, -5.9301)],
   mexico: [city("Mexico City", 19.4326, -99.1332), city("Guadalajara", 20.6597, -103.3496), city("Monterrey", 25.6866, -100.3161), city("Puebla", 19.0414, -98.2063), city("Tijuana", 32.5149, -117.0382), city("Cancún", 21.1619, -86.8515)]
 };
 
 const AREA_CATALOG = {
   Georgia: "atlanta", California: "california", "New York": "new-york", Texas: "texas", Ohio: "ohio",
-  Virginia: "virginia", Minnesota: "minnesota", Michigan: "michigan", Missouri: "missouri",
+  Virginia: "virginia", Minnesota: "minnesota", Michigan: "michigan", Missouri: "missouri", Wisconsin: "wisconsin",
   "United Kingdom": "united-kingdom", Mexico: "mexico"
 };
 

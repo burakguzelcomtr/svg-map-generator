@@ -23,6 +23,7 @@ assert(Object.keys(MAP_DATA.counties.Texas).length === 254, "Texas counties are 
 assert(Object.keys(MAP_DATA.subdivisions["United Kingdom"]).length === 4, "UK regions are incomplete");
 assert(Object.keys(MAP_DATA.subdivisions.Mexico).length === 32, "Mexico states are incomplete");
 assert(appSource.includes('city("London"') && appSource.includes('city("Mexico City"'), "Global city presets are missing");
+assert(appSource.includes('wisconsin: [city("Milwaukee"') && appSource.includes('Wisconsin: "wisconsin"'), "Wisconsin city marker presets are missing");
 assert(appSource.includes("placeMarkerFromMap") && appSource.includes("getCityCatalog"), "Marker placement controls are missing");
 assert(appSource.includes('mode === "name"') && appSource.includes('mode === "dot-name"'), "Marker name display modes are missing");
 assert(appSource.includes("renderRegionMarkerOptions") && appSource.includes("Region center"), "Region marker selection is missing");
@@ -33,6 +34,9 @@ assert(htmlSource.includes('min="0.25"') && appSource.includes("startMarkerDrag"
 const atlanta = [-84.388, 33.749];
 const atlantaRoundTrip = invertAlbersUsa(...projectAlbersUsa(...atlanta));
 assert(distance(atlanta, atlantaRoundTrip) < 1e-8, "US click-to-coordinate conversion is inaccurate");
+const milwaukeePoint = projectAlbersUsa(-87.9065, 43.0389);
+const wisconsinBounds = MAP_DATA.states.Wisconsin.bounds;
+assert(milwaukeePoint && pointInsideBounds(milwaukeePoint, wisconsinBounds), "Wisconsin city markers do not project inside the state");
 const london = [-0.1278, 51.5074];
 const londonRoundTrip = invertMercator(...projectMercator(...london));
 assert(distance(london, londonRoundTrip) < 1e-8, "Global click-to-coordinate conversion is inaccurate");
@@ -45,4 +49,8 @@ function assert(condition, message) {
 
 function distance(a, b) {
   return Math.hypot(a[0] - b[0], a[1] - b[1]);
+}
+
+function pointInsideBounds(point, bounds) {
+  return point[0] >= bounds[0] && point[0] <= bounds[2] && point[1] >= bounds[1] && point[1] <= bounds[3];
 }
